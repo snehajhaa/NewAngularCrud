@@ -1,0 +1,13 @@
+{
+  "users": [
+    {
+      name: "Abhigyan",
+      fatherName: "Abhishek",
+      motherName: "Neha",
+      studentId: "1",
+      admissionNo: "1",
+      mobile: "7259691055",
+      email: "abhi@gmail.com"
+    }
+  ]
+}

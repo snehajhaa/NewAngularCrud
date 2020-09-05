@@ -1,0 +1,115 @@
+ <div class="card m-3">
+    <h5 class="card-header">Student Registration Form</h5>
+    <div class="card-body">
+      <div *ngIf="isSuccess && message.length > 0">
+        <div class="alert alert-success">
+          <strong>Success!</strong> {{message}}.
+        </div>
+      </div>
+      <div *ngIf="!isSuccess">
+        <div class="alert alert-danger">
+          <strong>Error!</strong> {{message}}.
+        </div>
+      </div>
+      <form [formGroup]="registerForm" (ngSubmit)="addUser()">
+        <div class="form-row">
+            <div class="form-group col-12">
+              <label>Your full name</label>
+              <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+              <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                <div *ngIf="f.name.errors.required">Your full name is required</div>
+              </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-6">
+              <label>Father name</label>
+              <input type="text" formControlName="fatherName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.fatherName.errors }" />
+              <div *ngIf="submitted && f.fatherName.errors" class="invalid-feedback">
+                <div *ngIf="f.fatherName.errors.required">Your father name is required</div>
+              </div>
+            </div>
+            <div class="form-group col-6">
+              <label>Mother name</label>
+              <input type="text" formControlName="motherName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.motherName.errors }" />
+              <div *ngIf="submitted && f.motherName.errors" class="invalid-feedback">
+                <div *ngIf="f.motherName.errors.required">Your mother name is required</div>
+              </div>
+            </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-6">
+              <label>Student Id</label>
+              <input type="text" [readonly]="isEdit" formControlName="id" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.id.errors }" />
+              <div *ngIf="submitted && f.id.errors" class="invalid-feedback">
+                <div *ngIf="f.id.errors.required">Student Id is required</div>
+              </div>
+          </div>
+          <div class="form-group col-6">
+            <label>Admission no</label>
+            <input type="text" formControlName="admissionNo" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.admissionNo.errors }" />
+            <div *ngIf="submitted && f.admissionNo.errors" class="invalid-feedback">
+              <div *ngIf="f.admissionNo.errors.required">Admission number is required</div>
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-12">
+            <label>Mobile Number</label>
+            <input type="text" formControlName="mobile" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.mobile.errors }" />
+            <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
+              <div *ngIf="f.mobile.errors.required">Mobile number is required</div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+          <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+            <div *ngIf="f.email.errors.required">Email is required</div>
+            <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+          </div>
+        </div>
+        <div class="text-center">
+          <button *ngIf="!isEdit" class="btn btn-primary mr-1">Register</button>
+          <button *ngIf="isEdit" class="btn btn-primary mr-1">Edit</button>
+          <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+ <div class="card m-3">
+   <h5 class="card-header">People Registration System</h5>
+   <div class="card-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Student Id</th>
+            <th scope="col">Full Name</th>
+            <th scope="col">Father Name</th>
+            <th scope="col">Mother name</th>
+            <th scope="col">Admission no</th>
+            <th scope="col">Mobile</th>
+            <th scope="col">Email</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of allUser">
+            <td>{{user.id}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.fatherName}}</td>
+            <td>{{user.motherName}}</td>
+            <td>{{user.admissionNo}}</td>
+            <td>{{user.mobile}}</td>
+            <td>{{user.email}}</td>
+            <td><button (click)="editUser(user)" class="btn btn-warning">Edit</button></td>
+            <td><button (click)="deleteUser(user)" class="btn btn-danger">Delete</button></td>
+          </tr>
+        </tbody>
+      </table>
+   </div>
+ </div>
