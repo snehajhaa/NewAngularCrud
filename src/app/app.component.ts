@@ -25,7 +25,7 @@ constructor(private commonService: CommonService, private formBuilder: FormBuild
       motherName: ['', Validators.required],
       id: ['', Validators.required],
       admissionNo: ['', Validators.required],
-      mobile: ['', Validators.required],
+     mobile:  ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
       email: ['', [Validators.required, Validators.email]],
     });
     this.getLatestUser();
